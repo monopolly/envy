@@ -83,6 +83,7 @@ func parseDotenv(src string) (map[string]string, error) {
 		if !validKey(key) {
 			return nil, dotenvError{Line: ln, Msg: "invalid key " + `"` + key + `"`}
 		}
+		raw := rest // keeps the whitespace after "=" so "KEY= # c" is a comment
 		rest = strings.TrimLeft(rest, " \t")
 
 		var val string
@@ -114,10 +115,10 @@ func parseDotenv(src string) (map[string]string, error) {
 				val = body
 			}
 		} else {
-			if i := inlineComment(rest); i >= 0 {
-				rest = rest[:i]
+			if i := inlineComment(raw); i >= 0 {
+				raw = raw[:i]
 			}
-			val = expandValue(strings.TrimSpace(rest), false, lookup)
+			val = expandValue(strings.TrimSpace(raw), false, lookup)
 		}
 		out[key] = val
 	}

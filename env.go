@@ -26,6 +26,10 @@
 //	kv:":"                       map key/value separator (default ":")
 //
 // Precedence: ! > env > file > default.
+//
+// go vet reports bare tags (`req`, `file`) as "bad syntax for struct tag
+// pair". envy parses them fine; to silence vet write `req:""` / `file:""`
+// or run `go vet -structtag=false`.
 package envy
 
 import (

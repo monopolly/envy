@@ -16,6 +16,9 @@ SPACED =  some value
 export EXPORTED=yes
 INLINE=abc # comment
 HASH=abc#notcomment
+EMPTY_COMMENT= # comment
+EMPTY_TAB=	# comment
+HASH_VALUE=#not-comment
 DQ="hello \"world\"\n\tend"
 SQ='literal $PLAIN \n'
 REF=${PLAIN}-$PLAIN-$ENVY_OUTER-$MISSING
@@ -37,6 +40,9 @@ UNCLOSED_BRACE=${abc
 		"EXPORTED":       "yes",
 		"INLINE":         "abc",
 		"HASH":           "abc#notcomment",
+		"EMPTY_COMMENT":  "",
+		"EMPTY_TAB":      "",
+		"HASH_VALUE":     "#not-comment",
 		"DQ":             "hello \"world\"\n\tend",
 		"SQ":             `literal $PLAIN \n`,
 		"REF":            "value-value-outer-",
